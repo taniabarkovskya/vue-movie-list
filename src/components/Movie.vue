@@ -3,6 +3,9 @@ import axios from "axios";
 import BackButton from "@/components/BackButton.vue";
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export default {
   data() {
     return {
@@ -13,12 +16,11 @@ export default {
   async mounted() {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.$route.params.id}`,
+        `${BASE_URL}/movie/${this.$route.params.id}`,
         {
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2FmZTZkMDU2NjNjOGJhMjc5ZGRjZDNjMThhNzIzNSIsIm5iZiI6MTczOTgxOTU5Ni44OTY5OTk4LCJzdWIiOiI2N2IzOGE0YzNhZmMxMWE1YmQ2ZGJmYTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.RD_joXgxYqRzhtjzJSiodN8sOYgXJfJTsJoqCS-n05A`,
-          },
+            Authorization: `Bearer ${API_KEY}`},
         }
       );
       this.movie = response.data;

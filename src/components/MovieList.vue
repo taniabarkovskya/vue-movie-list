@@ -4,12 +4,34 @@ import MovieCard from "@/components/MovieCard.vue";
 import Filters from "@/components/Filters.vue";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export default {
   data() {
     return {
       movies: null,
       isLoading: true,
+      searchValue: "",
+      selectedGenre: 0,
     };
+  },
+  computed: {
+    moviesList() {
+      return this.movies
+        ? this.movies.filter((movie) => {
+            const matchesSearch = this.searchValue.trim()
+              ? movie.title
+                  .toLowerCase()
+                  .includes(this.searchValue.trim().toLowerCase())
+              : true;
+            const matchesGenre = this.selectedGenre
+              ? movie.genre_ids.includes(Number(this.selectedGenre))
+              : true;
+            return matchesSearch && matchesGenre;
+          })
+        : [];
+    },
   },
   props: {
     link: String,
@@ -18,11 +40,11 @@ export default {
   async mounted() {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${this.link}`,
+        `${BASE_URL}/movie/${this.link}`,
         {
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2FmZTZkMDU2NjNjOGJhMjc5ZGRjZDNjMThhNzIzNSIsIm5iZiI6MTczOTgxOTU5Ni44OTY5OTk4LCJzdWIiOiI2N2IzOGE0YzNhZmMxMWE1YmQ2ZGJmYTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.RD_joXgxYqRzhtjzJSiodN8sOYgXJfJTsJoqCS-n05A`,
+            Authorization: `Bearer ${API_KEY}`,
           },
         }
       );
@@ -44,18 +66,25 @@ export default {
 <template>
   <div class="list">
     <h2 class="list__title">{{ title }}</h2>
-    <Filters />
+    <Filters
+      :searchValue="searchValue"
+      :genreValue="selectedGenre"
+      @update:genreValue="selectedGenre = $event"
+      @update:searchValue="searchValue = $event"
+    />
+    {{ searchValue }}
     <div v-if="isLoading" class="list__loader">
       <PulseLoader />
     </div>
     <section v-else class="list__content">
       <MovieCard
-        v-for="movie in movies"
+        v-for="movie in moviesList"
         :key="movie.id"
         :movie="movie"
         :link="link"
       />
     </section>
+    <p class="list__empty">No movies :(</p>
   </div>
 </template>
 
@@ -80,6 +109,15 @@ export default {
   grid-auto-rows: 1fr;
   gap: 20px;
 }
+
+.list__empty{
+  text-align: center;
+  color: #99aab5;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 10px;
+}
+
 @media (min-width: 480px) {
   .list__content {
     grid-template-columns: repeat(2, 1fr);

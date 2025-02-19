@@ -1,6 +1,9 @@
 <script>
 import axios from "axios";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export default {
   data() {
     return {
@@ -8,14 +11,19 @@ export default {
       isLoading: true,
     };
   },
+  props: {
+    genreValue: Number,
+    searchValue: String,
+  },
+  emits: ["update:genreValue", "update:seacrhValue"],
   async mounted() {
     try {
       const response = await axios.get(
-        "https://api.themoviedb.org/3/genre/movie/list",
+        `${BASE_URL}/genre/movie/list`,
         {
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2FmZTZkMDU2NjNjOGJhMjc5ZGRjZDNjMThhNzIzNSIsIm5iZiI6MTczOTgxOTU5Ni44OTY5OTk4LCJzdWIiOiI2N2IzOGE0YzNhZmMxMWE1YmQ2ZGJmYTQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.RD_joXgxYqRzhtjzJSiodN8sOYgXJfJTsJoqCS-n05A`,
+            Authorization: `Bearer ${API_KEY}`,
           },
         }
       );
@@ -31,10 +39,23 @@ export default {
 
 <template>
   <div class="filters">
-    <input class="filters__search" type="text" placeholder="Start typing..." />
-
-    <select class="filters__select" name="genres" id="genres" :disabled="isLoading">
-      <option disabled selected>{{ isLoading ? "Loading..." : "Select genre" }}</option>
+    <input
+      class="filters__search"
+      type="text"
+      placeholder="Start typing..."
+      :value="searchValue"
+      @input="$emit('update:seacrhValue', $event.target.value)"
+    />
+    <select
+      class="filters__select"
+      name="genres"
+      id="genres"
+      :disabled="isLoading"
+      @change="$emit('update:genreValue', $event.target.value)"
+    >
+      <option disabled :selected="genreValue === 0">
+        {{ isLoading ? "Loading..." : "Select genre" }}
+      </option>
       <option v-for="genre in genres" :key="genre.id" :value="genre.id">
         {{ genre.name }}
       </option>
@@ -67,12 +88,11 @@ export default {
 }
 
 @media (min-width: 480px) {
- 
 }
 
 @media (min-width: 768px) {
   .filters {
-  flex-direction: row;
-}
+    flex-direction: row;
+  }
 }
 </style>
