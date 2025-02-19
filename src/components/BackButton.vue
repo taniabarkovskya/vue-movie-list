@@ -1,14 +1,19 @@
 <script>
 import { RouterLink } from "vue-router";
+export default {
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
+  },
+};
 </script>
 
 <template>
-  <RouterLink to="/popular" class="back">
-    <div class="back__icon">
-      <img src="./icons/back.svg" alt="Back arrow" class="back__icon-arrow" />
-    </div>
+  <button class="back" @click="goBack">
+    <img src="./icons/back.svg" alt="Back arrow" class="back__icon" />
     <span class="back__text">Back</span>
-  </RouterLink>
+  </button>
 </template>
 
 <style>
@@ -16,10 +21,10 @@ import { RouterLink } from "vue-router";
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50px;
+  width: 80px;
   padding: 6px 12px;
   margin-bottom: 12px;
-  background-color: #FFF;
+  background-color: #fff;
   color: #2c2f33;
   border: 1px solid #99aab5;
   text-decoration: none;
@@ -34,14 +39,9 @@ import { RouterLink } from "vue-router";
   color: #99aab5;
 }
 
-.back__icon{
+.back__icon {
   height: 14px;
   width: 14px;
 }
 
-.back__icon-arrow{
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
 </style>
