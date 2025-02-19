@@ -86,6 +86,12 @@ export default {
             :alt="company.name"
             class="company__logo"
           />
+          <img
+            v-else
+            src="./icons/broken_img.svg"
+            :alt="company.name"
+            class="company__logo"
+          />
           <p class="company__name">
             {{ company.name }} ({{ company.origin_country }})
           </p>
@@ -154,7 +160,8 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 15px;
+  justify-content: center;
+  gap: 30px;
 }
 
 .company {
@@ -164,16 +171,18 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 .company__logo {
-  width: 100px;
+  height: 50px;
   margin-bottom: 5px;
 }
 
 .company__name {
   font-size: 12px;
   margin-top: auto;
+  color: #000;
 }
 
 .loading {

@@ -7,8 +7,6 @@ import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-console.log(import.meta.env)
-
 export default {
   data() {
     return {
@@ -24,6 +22,9 @@ export default {
         ? this.movies.filter((movie) => {
             const matchesSearch = this.searchValue.trim()
               ? movie.title
+                  .toLowerCase()
+                  .includes(this.searchValue.trim().toLowerCase()) ||
+                movie.overview
                   .toLowerCase()
                   .includes(this.searchValue.trim().toLowerCase())
               : true;
@@ -41,15 +42,12 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get(
-        `${BASE_URL}/movie/${this.link}`,
-        {
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/movie/${this.link}`, {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      });
       this.movies = response.data.results;
     } catch (error) {
       console.error("Error fetching data");
@@ -74,11 +72,10 @@ export default {
       @update:genreValue="selectedGenre = $event"
       @update:searchValue="searchValue = $event"
     />
-    {{ searchValue }}
     <div v-if="isLoading" class="list__loader">
       <PulseLoader />
     </div>
-    <section v-else class="list__content">
+    <section v-else-if="moviesList.length" class="list__content">
       <MovieCard
         v-for="movie in moviesList"
         :key="movie.id"
@@ -86,7 +83,7 @@ export default {
         :link="link"
       />
     </section>
-    <p class="list__empty">No movies :(</p>
+    <p v-else class="list__empty">No movies :(</p>
   </div>
 </template>
 
@@ -112,7 +109,7 @@ export default {
   gap: 20px;
 }
 
-.list__empty{
+.list__empty {
   text-align: center;
   color: #99aab5;
   font-weight: 700;

@@ -15,7 +15,7 @@ export default {
     genreValue: Number,
     searchValue: String,
   },
-  emits: ["update:genreValue", "update:seacrhValue"],
+  emits: ["update:genreValue", "update:searchValue"],
   async mounted() {
     try {
       const response = await axios.get(
@@ -44,7 +44,7 @@ export default {
       type="text"
       placeholder="Start typing..."
       :value="searchValue"
-      @input="$emit('update:seacrhValue', $event.target.value)"
+      @input="$emit('update:searchValue', $event.target.value)"
     />
     <select
       class="filters__select"
