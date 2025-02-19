@@ -28,7 +28,7 @@ export default {
 <style>
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 40px auto;
   padding-inline: 16px;
   min-height: 100vh;
 }
