@@ -1,13 +1,15 @@
 <script>
-import Header from '@/components/Header.vue'
-import MovieList from '@/components/MovieList.vue'
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+
+import { RouterView } from 'vue-router';
 
 export default {
   components: {
     Header,
-    MovieList,
-  }
-}
+    Footer,
+  },
+};
 
 // export default {
 //   data() {
@@ -26,7 +28,17 @@ export default {
 
 <template>
   <Header />
-  <MovieList />
+  <main class="container">
+    <RouterView />
+  </main>
+  <Footer />
 </template>
 
-<style scoped></style>
+<style>
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding-inline: 16px;
+  min-height: 100vh;
+}
+</style>
