@@ -1,13 +1,14 @@
 <script>
-import { RouterLink } from 'vue-router';
-
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
   <div class="not-found">
     <h1 class="not-found__title">404</h1>
-    <p class="not-found__text">Oops! The page you're looking for doesn't exist.</p>
-    <RouterLink class="not-found__button" to="/">Go to Home</RouterLink>
+    <p class="not-found__text">
+      Oops! The page you're looking for doesn't exist.
+    </p>
+    <RouterLink class="not-found__button" to="/home">Go to Home</RouterLink>
   </div>
 </template>
 
@@ -52,13 +53,13 @@ import { RouterLink } from 'vue-router';
 
 @media (min-width: 480px) {
   .not-found__title {
-  font-size: 100px;
-  margin: 0;
-}
+    font-size: 100px;
+    margin: 0;
+  }
 
-.not-found__text {
-  font-size: 24px;
-  margin: 10px 0 20px;
-}
+  .not-found__text {
+    font-size: 24px;
+    margin: 10px 0 20px;
+  }
 }
 </style>

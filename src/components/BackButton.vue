@@ -1,5 +1,4 @@
 <script>
-import { RouterLink } from "vue-router";
 export default {
   methods: {
     goBack() {
@@ -31,6 +30,7 @@ export default {
   font-size: 14px;
   font-weight: 700;
   border-radius: 8px;
+  cursor: pointer;
   transition: all 0.3s linear;
 }
 

@@ -4,11 +4,11 @@ import { RouterLink } from "vue-router";
 
 <template>
   <footer class="footer">
-    <RouterLink to="/" class="footer__image">
+    <RouterLink to="/home" class="footer__image">
       <img src="./icons/logo.svg" alt="Logo" class="footer__image-img" />
     </RouterLink>
     <nav class="footer__nav">
-      <RouterLink to="/" class="footer__nav-link">Home</RouterLink>
+      <RouterLink to="/home" class="footer__nav-link">Home</RouterLink>
       <RouterLink to="/now_playing" class="footer__nav-link"
         >Now playing</RouterLink
       >

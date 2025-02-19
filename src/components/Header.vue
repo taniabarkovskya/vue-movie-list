@@ -17,15 +17,15 @@ export default {
 
 <template>
   <header class="header">
-    <RouterLink to="/" class="header__image">
+    <RouterLink to="/home" class="header__image">
       <img src="./icons/logo.svg" alt="Logo" class="header__image-img" />
     </RouterLink>
     <nav class="header__nav">
       <RouterLink
-        to="/"
+        to="/home"
         :class="[
           'header__nav-link',
-          isActiveLink('/') ? 'header__nav-link--active' : '',
+          isActiveLink('/home') ? 'header__nav-link--active' : '',
         ]"
         >Home</RouterLink
       >

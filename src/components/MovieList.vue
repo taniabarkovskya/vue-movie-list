@@ -1,13 +1,14 @@
 <script>
 import axios from "axios";
 import MovieCard from "@/components/MovieCard.vue";
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import Filters from "@/components/Filters.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   data() {
     return {
       movies: null,
-      isLoading: true, 
+      isLoading: true,
     };
   },
   props: {
@@ -30,10 +31,11 @@ export default {
       console.error("Error fetching data");
     } finally {
       this.isLoading = false;
-    } 
+    }
   },
   components: {
     MovieCard,
+    Filters,
     PulseLoader,
   },
 };
@@ -42,26 +44,31 @@ export default {
 <template>
   <div class="list">
     <h2 class="list__title">{{ title }}</h2>
-
+    <Filters />
     <div v-if="isLoading" class="list__loader">
       <PulseLoader />
     </div>
     <section v-else class="list__content">
-      <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" :link="link"/>
+      <MovieCard
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"
+        :link="link"
+      />
     </section>
   </div>
 </template>
 
 <style>
-.list__title{
+.list__title {
   color: #99aab5;
   text-align: center;
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
-.list__loader{
+.list__loader {
   text-align: center;
   color: #99aab5;
   padding: 10px;
@@ -76,6 +83,9 @@ export default {
 @media (min-width: 480px) {
   .list__content {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .list__title {
+    font-size: 48px;
   }
 }
 

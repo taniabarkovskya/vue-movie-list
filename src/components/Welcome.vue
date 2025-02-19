@@ -81,16 +81,15 @@ import { RouterLink } from "vue-router";
 
 @media (min-width: 480px) {
   .welcome__title {
-  font-size: 48px;
-}
+    font-size: 48px;
+  }
 
-.welcome__description {
-  font-size: 20px;
-}
+  .welcome__description {
+    font-size: 20px;
+  }
 
-.category {
-  font-size: 14px;
+  .category {
+    font-size: 14px;
+  }
 }
-}
-
 </style>

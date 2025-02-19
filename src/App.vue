@@ -2,42 +2,33 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
-import { RouterView } from 'vue-router';
+import { RouterView } from "vue-router";
 
 export default {
   components: {
     Header,
     Footer,
   },
+  computed: {
+    isRegisterPage() {
+      return this.$route.name === "register";
+    },
+  },
 };
-
-// export default {
-//   data() {
-//     return {
-//       name: "John Doe",
-//       status: true,
-//     };
-//   },
-//   methods: {
-//     toggleStatus() {
-//       this.status = !this.status;
-//     },
-//   },
-// };
 </script>
 
 <template>
-  <Header />
+  <Header v-if="!isRegisterPage" />
   <main class="container">
     <RouterView />
   </main>
-  <Footer />
+  <Footer v-if="!isRegisterPage" />
 </template>
 
 <style>
 .container {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 auto;
   padding-inline: 16px;
   min-height: 100vh;
 }
