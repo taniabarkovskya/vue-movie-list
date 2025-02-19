@@ -7,6 +7,8 @@ import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+console.log(import.meta.env)
+
 export default {
   data() {
     return {
