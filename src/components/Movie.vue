@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import BackButton from "@/components/BackButton.vue";
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
 export default {
   data() {
@@ -29,6 +30,7 @@ export default {
     } 
   },
   components: {
+    BackButton,
     PulseLoader,
   },
 };
@@ -39,6 +41,7 @@ export default {
       <PulseLoader />
   </div>
   <div v-else class="movie-details">
+  <BackButton />
     <div class="movie-details__header">
       <img
         v-if="movie.poster_path"
