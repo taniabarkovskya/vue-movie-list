@@ -22,19 +22,27 @@ TMDB API for fetching movie data
 
 ## Installation
 - #### Clone the repository:
-`git clone https://github.com/yourusername/movie-list-app.git`
-`cd movie-list-app`
+```bash
+git clone https://github.com/yourusername/movie-list-app.git
+cd movie-list-app
+```
 
 - #### Install dependencies:
-`npm install`
+```bash
+npm install
+```
 
 - #### Set up environment variables:
 Create a .env file in the root of the project and add the following keys:
-`VITE_API_KEY=your_tmdb_api_key`
-`VITE_BASE_URL=https://api.themoviedb.org/3`
+```bash
+VITE_API_KEY=your_tmdb_api_key
+VITE_BASE_URL=https://api.themoviedb.org/3
+```
 
 - #### Run the project locally:
-`npm run dev`
+```bash
+npm run dev
+```
 
 - #### Open the app in your browser:
 Visit http://localhost:5173 to see the project running.
