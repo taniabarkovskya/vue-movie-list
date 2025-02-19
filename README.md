@@ -1,29 +1,41 @@
-# vue-movie-list
+# Movie List App
+This is a movie list web application built with Vue.js. It allows users to view movies, filter and search them, and view detailed information for each movie. The project uses data from The Movie Database (TMDB) API.
 
-This template should help get you started developing with Vue 3 in Vite.
+## Features
+- Registration form with validation.
+- Movie list displayed as cards.
+- Search and filter functionality for movies.
+- View movie details on a separate page.
+- Responsive design using CSS Grid and Flexbox.
+- Routing of components.
+- Components structured with props, $emit.
 
-## Recommended IDE Setup
+## Demo
+- You can view the demo of the project here: [Demo Link](https://vue-movies-list-barkovska.netlify.app/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Technologies Used
+Vue.js (Options API)
+Vue Router
+Axios for API calls
+CSS Grid and Flexbox for responsive layout
+TMDB API for fetching movie data
 
-## Customize configuration
+## Installation
+- #### Clone the repository:
+`git clone https://github.com/yourusername/movie-list-app.git`
+`cd movie-list-app`
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- #### Install dependencies:
+`npm install`
 
-## Project Setup
+- #### Set up environment variables:
+Create a .env file in the root of the project and add the following keys:
+`VITE_API_KEY=your_tmdb_api_key`
+`VITE_BASE_URL=https://api.themoviedb.org/3`
 
-```sh
-npm install
-```
+- #### Run the project locally:
+`npm run dev`
 
-### Compile and Hot-Reload for Development
+- #### Open the app in your browser:
+Visit http://localhost:5173 to see the project running.
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
